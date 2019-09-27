@@ -23,20 +23,16 @@ response = requests.get(members_url, headers=headers)
 members = json.loads(response.text)
 
 # Get Slack URL
-slack_endpoint = 'https://hooks.slack.com/services/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'
+slack_endpoint = sys.argv[2]
 message = {
 	"blocks": [
 		{
 			"type": "section",
 			"text": {
-				"type": "plain_text",
-				"text": "This is a plain text section block.",
-				"emoji": True
+				"type": "mrkdwn",
+				"text": ":newspaper: New Sign-ups in the last *15 min*",
 			}
 		}
 	]
 }
 response = requests.post(slack_endpoint, json=message)
-print(response.status)
-if not response.text:
-	print(response.text)
