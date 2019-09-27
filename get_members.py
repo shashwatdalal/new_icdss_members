@@ -5,7 +5,7 @@ import sys
 
 import requests
 
-# get api-key 
+# get api-keys 
 token = sys.argv[1]
 headers = {"X-API-Key": token}
 
@@ -21,4 +21,20 @@ year = '19-20'
 members_url = os.path.join(END_POINT, society_code, 'reports', 'members?year={}'.format(year))
 print(members_url)
 response = requests.get(members_url, headers=headers)
-print(json.loads(response.text))
+members = json.loads(response.text)
+
+# Get Slack URL
+slack_endpoint = sys.argv[2]
+message = {
+	"blocks": [
+		{
+			"type": "section",
+			"text": {
+				"type": "plain_text",
+				"text": "This is a plain text section block.",
+				"emoji": true
+			}
+		}
+	]
+}
+requests.post(slack_endpoint, message)
