@@ -36,7 +36,7 @@ message = {
 		}
 	]
 }
-response = requests.post(slack_endpoint, message)
+response = requests.post(slack_endpoint, json=message)
 print(response.status)
 if not response.text:
 	print(response.text)
