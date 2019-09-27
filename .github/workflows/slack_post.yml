@@ -13,4 +13,4 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Run a multi-line script
-      run: python3 get_members.py ${{ secrets.UNION_API_KEY }} ${{ secrets.SLACK_FRESHERS_FAIR_URL }}
+      run: python3 get_members.py ${{ secrets.UNION_API_KEY }} ${{ secrets.SLACK_CHANNEL_URL }}
