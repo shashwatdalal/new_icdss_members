@@ -23,7 +23,7 @@ response = requests.get(members_url, headers=headers)
 members = json.loads(response.text)
 
 # Get Slack URL
-slack_endpoint = sys.argv[2]
+slack_endpoint = "https://hooks.slack.com/services/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"
 message = {
 	"blocks": [
 		{
