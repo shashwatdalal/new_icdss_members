@@ -12,5 +12,5 @@ jobs:
     
     steps:
     - uses: actions/checkout@v1
-    - name: Run a multi-line script
+    - name: Send Slack Update
       run: python3 get_members.py ${{ secrets.UNION_API_KEY }} ${{ secrets.SLACK_CHANNEL_URL }}
