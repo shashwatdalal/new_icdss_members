@@ -22,7 +22,7 @@ members_url = os.path.join(END_POINT, society_code, 'reports', 'members?year={}'
 response = requests.get(members_url, headers=headers)
 members = json.loads(response.text)
 # Get Slack URL
-slack_endpoint = "https://hooks.slack.com/services/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"
+slack_endpoint = sys.argv[2]
 message = {
 	"blocks": [
 		{
