@@ -2,9 +2,9 @@ import codecs
 import json
 import os
 import sys
-import slack
 
 import requests
+import slack
 
 # get api-keys 
 token = sys.argv[1]
