@@ -14,7 +14,6 @@ END_POINT = 'https://eactivities.union.ic.ac.uk/API/CSP'
 
 # get society code
 response = requests.get(END_POINT, headers=headers)
-print(response.status_code)
 society_code = json.loads(response.text)[0]['Code']
 
 # get members 
