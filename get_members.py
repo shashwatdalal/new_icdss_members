@@ -32,7 +32,7 @@ message = {
 			"text": {
 				"type": "plain_text",
 				"text": "This is a plain text section block.",
-				"emoji": true
+				"emoji": True
 			}
 		}
 	]
