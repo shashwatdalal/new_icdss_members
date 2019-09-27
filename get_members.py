@@ -21,7 +21,7 @@ year = '19-20'
 members_url = os.path.join(END_POINT, society_code, 'reports', 'members?year={}'.format(year))
 response = requests.get(members_url, headers=headers)
 members = json.loads(response.text)
-
+print(members)
 # Get Slack URL
 slack_endpoint = "https://hooks.slack.com/services/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"
 message = {
@@ -32,6 +32,9 @@ message = {
 				"type": "mrkdwn",
 				"text": ":newspaper: New Sign-ups in the last *15 min*",
 			}
+		},
+		{
+			"type": "divider"
 		}
 	]
 }
