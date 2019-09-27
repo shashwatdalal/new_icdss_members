@@ -21,8 +21,11 @@ year = '19-20'
 members_url = os.path.join(END_POINT, society_code, 'reports', 'members?year={}'.format(year))
 response = requests.get(members_url, headers=headers)
 members = json.loads(response.text)
+
 # Get Slack URL
 slack_endpoint = sys.argv[2]
+
+# send update to slack channel
 message = {
 	"blocks": [
 		{
