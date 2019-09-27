@@ -29,17 +29,7 @@ message = {
 			"type": "section",
 			"text": {
 				"type": "mrkdwn",
-				"text": ":newspaper: New Sign-ups in the last *15 min*",
-			}
-		},
-		{
-			"type": "divider"
-		}, 
-		{
-			"type": "section",
-			"text": {
-				"type": "mrkdwn",
-				"text": "*{}*: {}".format(members[0]['CID'], members[0]['Login'])
+				"text": ":newspaper: *Number of signups*: {}".format(len(members))
 			}
 		}
 	]
