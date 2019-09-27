@@ -20,5 +20,5 @@ society_code = json.loads(response.text)[0]['Code']
 year = '19-20'
 members_url = os.path.join(END_POINT, society_code, 'reports', 'members?year={}'.join(year))
 response = requests.get(members_url, headers=headers)
-decoded_text = codecs.decode(response.text, 'utf-8-sig')
+decoded_text = codecs.decode(response.text.encode(), 'utf-8-sig')
 print(json.loads(decoded_text))
