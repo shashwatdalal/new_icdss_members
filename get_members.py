@@ -12,7 +12,7 @@ END_POINT = 'https://eactivities.union.ic.ac.uk/API/CSP'
 
 # get society code
 response = requests.get(END_POINT, headers=headers)
-society_code = json.loads(reponse.text)[0]['Code']
+society_code = json.loads(response.text)[0]['Code']
 
 # get members 
 year = '19-20'
