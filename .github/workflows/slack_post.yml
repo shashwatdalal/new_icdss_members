@@ -13,6 +13,6 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Install python Slack API
-      run: pip3 install slack
+      run: pip3 install setuptools slack
     - name: Run a multi-line script
       run: python3 get_members.py ${{ secrets.UNION_API_KEY }} ${{ secrets.SLACK_FRESHERS_FAIR_URL }}
