@@ -59,8 +59,8 @@ if __name__ == "__main__":
 			'increase': len(new_members)
 		}
 	)
-	
-	print(s3_json)
+	with open('members.json', 'w') as f:
+		json.dumps(s3_json, f)
 	
 
 # # Get Slack URL
