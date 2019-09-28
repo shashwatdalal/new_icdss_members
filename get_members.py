@@ -50,13 +50,13 @@ if __name__ == "__main__":
 	
 	# calculate new sign-ups
 	new_members = union_cids - s3_cids
-	print(new_members)
 	
 	# update members json
 	s3_json['growth'].append(
 		{
 			'timestamp': str(datetime.now()),
-			'new_members': list(new_members)
+			'new_members': list(new_members), 
+			'increase': len(new_members)
 		}
 	)
 	
