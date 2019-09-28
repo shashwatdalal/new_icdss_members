@@ -2,6 +2,7 @@ from datetime import datetime
 import json
 import os
 import sys
+from matplotlib import pyplot as plt
 
 import requests
 
