@@ -60,7 +60,7 @@ if __name__ == "__main__":
 		}
 	)
 	with open('members.json', 'w') as f:
-		json.dumps(s3_json, f)
+		json.dump(s3_json, f)
 	
 
 # # Get Slack URL
