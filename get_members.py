@@ -42,15 +42,7 @@ def _get_union_cids():
 		union_cids.add(member['CID'])
 	return union_cids
 
-if __name__ == "__main__":
-	# get previous member list
-	s3_json, s3_cids = _get_s3_cids()
-	# get updated member list
-	union_cids = _get_union_cids()
-	
-	# calculate new sign-ups
-	new_members = union_cids - s3_cids
-	
+def _update_s3(new_members, s3_json):
 	# update members json
 	s3_json['growth'].append(
 		{
@@ -61,21 +53,34 @@ if __name__ == "__main__":
 	)
 	with open('members.json', 'w') as f:
 		json.dump(s3_json, f)
+
+def _send_slack_message(new_members):
+	# Get Slack URL
+	slack_endpoint = sys.argv[2]
+
+	# send update to slack channel
+	message = {
+		"blocks": [
+			{
+				"type": "section",
+				"text": {
+					"type": "mrkdwn",
+					"text": ":newspaper: *Number of New Signups*: {}".format(len(new_members))
+				}
+			}
+		]
+	}
+	response = requests.post(slack_endpoint, json=message)
+
+
+if __name__ == "__main__":
+	# get data from two sources
+	s3_json, s3_cids = _get_s3_cids()
+	union_cids = _get_union_cids()
 	
-
-# # Get Slack URL
-# slack_endpoint = sys.argv[2]
-
-# # send update to slack channel
-# message = {
-# 	"blocks": [
-# 		{
-# 			"type": "section",
-# 			"text": {
-# 				"type": "mrkdwn",
-# 				"text": ":newspaper: *Number of signups*: {}".format(len(members))
-# 			}
-# 		}
-# 	]
-# }
-# response = requests.post(slack_endpoint, json=message)
+	# calculate new sign-ups
+	new_members = union_cids - s3_cids
+	
+	_update_s3(new_members, s3_json)
+	_send_slack_message(new_members)
+	
