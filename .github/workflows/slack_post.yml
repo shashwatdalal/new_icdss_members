@@ -21,6 +21,6 @@ jobs:
         aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws configure set default.region eu-west-2
     - name: Get Previous Stats
-      run: aws s3 cp s3://members.json .
+      run: aws s3 cp s3://icdss-members/members.json .
     - name: Send Slack Update
       run: python3 get_members.py ${{ secrets.UNION_API_KEY }} ${{ secrets.SLACK_CHANNEL_URL }}
