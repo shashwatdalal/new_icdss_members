@@ -20,5 +20,7 @@ jobs:
         aws configure set default.region eu-west-2
     - name: Get Previous Stats
       run: aws s3 cp s3://icdss-members/members.json .
-    - name: Send Slack Update
+    - name: Calculate New Members
       run: python3 get_members.py ${{ secrets.UNION_API_KEY }} ${{ secrets.SLACK_CHANNEL_URL }}
+    - name: Update s3
+      run: aws s3 cp ./members.json s3://icdss-members/members.json
