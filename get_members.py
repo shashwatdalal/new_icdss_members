@@ -100,5 +100,5 @@ if __name__ == "__main__":
 	new_members_email = [union_emails[i] for i in new_member_idx]
 	
 	_update_s3(new_members_cid, s3_json)
-	_send_slack_message(new_members)
+	#_send_slack_message(new_members)
 	_update_mailchimp(new_members_email)
