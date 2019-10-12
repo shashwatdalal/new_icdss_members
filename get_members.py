@@ -76,7 +76,7 @@ def _send_slack_message(new_members):
 def _update_mailchimp(new_emails):
 	ICDSS_19_20_ID = '08aad186c9'
 	API_KEY = sys.argv[3]
-	URL = 'https://us18.api.mailchimp.com/3.0/lists/{}/members'.fromat(ICDSS_19_20_ID)
+	URL = 'https://us18.api.mailchimp.com/3.0/lists/{}/members'.format(ICDSS_19_20_ID)
 	auth = ('my_username', API_KEY)
 	for email in new_emails:
 		response = requests.post(URL, auth=auth, json={
