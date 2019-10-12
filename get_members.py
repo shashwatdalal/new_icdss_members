@@ -55,7 +55,7 @@ def _update_s3(new_members, s3_json):
 	with open('members.json', 'w') as f:
 		json.dump(s3_json, f)
 
-def _send_slack_message(new_members):
+def _send_slack_message(n_new_members):
 	# Get Slack URL
 	slack_endpoint = sys.argv[2]
 
@@ -66,7 +66,7 @@ def _send_slack_message(new_members):
 				"type": "section",
 				"text": {
 					"type": "mrkdwn",
-					"text": ":newspaper: *Number of New Signups*: {}".format(len(new_members))
+					"text": ":newspaper: *Number of New Signups*: {}".format(n_new_members))
 				}
 			}
 		]
@@ -100,5 +100,5 @@ if __name__ == "__main__":
 	new_members_email = [union_emails[i] for i in new_member_idx]
 	
 	_update_s3(new_members_cid, s3_json)
-	_send_slack_message(new_members)
+	_send_slack_message(len(new_members_cid))
 	_update_mailchimp(new_members_email)
