@@ -20,6 +20,6 @@ jobs:
     - name: Get Previous Stats
       run: aws s3 cp s3://icdss-members/members.json .
     - name: Calculate New Members
-      run: python3 get_members.py ${{ secrets.UNION_API_KEY }} ${{ secrets.SLACK_CHANNEL_URL }}
+      run: python3 get_members.py ${{ secrets.UNION_API_KEY }} ${{ secrets.SLACK_CHANNEL_URL }} ${{ secrets.MAILCHIMP_API }}
     - name: Update s3
       run: aws s3 cp ./members.json s3://icdss-members/members.json
