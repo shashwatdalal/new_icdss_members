@@ -89,8 +89,11 @@ def _update_mailchimp(new_emails):
 if __name__ == "__main__":
 	# get data from two sources
 	s3_json, s3_cids = _get_s3_cids()
+	print('s3_json', s3_json)
+	print('s3_cids', s3_cids)
 	union_cids, union_emails = _get_union_data()
-	
+	print('union_cids', union_cids)
+	print('union_emails', union_emails)
 	# calculate new sign-ups
 	new_member_idx = []
 	for i, union_cid in enumerate(union_cids):
@@ -98,6 +101,10 @@ if __name__ == "__main__":
 			new_member_idx.append(i)
 	new_members_cid = [union_cids[i] for i in new_member_idx]
 	new_members_email = [union_emails[i] for i in new_member_idx]
+	print('new_members_cid', new_members_cid)
+	print('new_members_email', new_members_email)
+
+
 	
 	_update_s3(new_members_cid, s3_json)
 	#_send_slack_message(new_members)
