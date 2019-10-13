@@ -66,7 +66,7 @@ def _send_slack_message(n_new_members):
 				"type": "section",
 				"text": {
 					"type": "mrkdwn",
-					"text": ":newspaper: *Number of New Signups*: {}".format(n_new_members))
+					"text": ":newspaper: *Number of New Signups*: {}".format(n_new_members)
 				}
 			}
 		]
