@@ -55,7 +55,7 @@ def _update_s3(new_members, s3_json):
 	with open('members.json', 'w') as f:
 		json.dump(s3_json, f)
 
-def _send_slack_message(n_new_members):
+def _send_slack_message(n_new_members), failed_members:
 	# Get Slack URL
 	slack_endpoint = sys.argv[2]
 
@@ -67,6 +67,7 @@ def _send_slack_message(n_new_members):
 				"text": {
 					"type": "mrkdwn",
 					"text": ":newspaper: *Number of New Signups*: {}".format(n_new_members)
+					"text": ":sos: {} number of members were not able to be added to the MailChimp".format(len(failed_members))
 				}
 			}
 		]
@@ -78,6 +79,7 @@ def _update_mailchimp(new_emails):
 	API_KEY = sys.argv[3]
 	URL = 'https://us18.api.mailchimp.com/3.0/lists/{}/members'.format(ICDSS_19_20_ID)
 	auth = ('my_username', API_KEY)
+	failed_members = []
 	for email in new_emails:
 		response = requests.post(URL, auth=auth, json={
 			'email_address': email, 
@@ -85,6 +87,8 @@ def _update_mailchimp(new_emails):
 		})
 		if response.status_code != 200:
 			print('Failed to add ', email)
+			failed_member.append(email)
+	return failed_members
 
 if __name__ == "__main__":
 	# get data from two sources
@@ -100,5 +104,5 @@ if __name__ == "__main__":
 	new_members_email = [union_emails[i] for i in new_member_idx]
 	
 	_update_s3(new_members_cid, s3_json)
-	_send_slack_message(len(new_members_cid))
-	_update_mailchimp(new_members_email)
+	failed_members = _update_mailchimp(new_members_email)
+	_send_slack_message(len(new_members_cid), failed_members)
