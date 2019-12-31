@@ -55,7 +55,7 @@ def _update_s3(new_members, s3_json):
 	with open('members.json', 'w') as f:
 		json.dump(s3_json, f)
 
-def _send_slack_message(n_new_members), failed_members:
+def _send_slack_message(n_new_members, failed_members):
 	# Get Slack URL
 	slack_endpoint = sys.argv[2]
 
