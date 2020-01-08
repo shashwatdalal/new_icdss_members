@@ -87,7 +87,7 @@ def _update_mailchimp(new_emails):
 		})
 		if response.status_code != 200:
 			print('Failed to add ', email)
-			failed_member.append(email)
+			failed_members.append(email)
 	return failed_members
 
 if __name__ == "__main__":
