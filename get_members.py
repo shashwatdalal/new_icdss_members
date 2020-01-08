@@ -67,14 +67,21 @@ def _send_slack_message(n_new_members, failed_members):
 				"text": {
 					"type": "mrkdwn",
 					"text": ":newspaper: *Number of New Signups*: {}".format(n_new_members)
-				},
-				"text": {
-					"type": "mrkdwn",
-					"text": ":sos: {} number of members were not able to be added to MailChimp".format(len(failed_members))
 				}
 			}
 		]
 	}
+
+	if len(failed_members) != 0:
+		# some members have not beeen synchronized
+		message["blocks"].append({
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": ":sos: {} number of members were not able to be added to MailChimp".format(len(failed_members))
+			}
+		})
+
 	response = requests.post(slack_endpoint, json=message)
 	
 def _update_mailchimp(new_emails):
