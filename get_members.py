@@ -95,7 +95,7 @@ def _update_mailchimp(new_emails):
 			'email_address': email, 
 			'status': 'subscribed'
 		})
-		if response.status_code != 200:
+		if response.status_code != 200 and response.status_code != 400:
 			print(response.status_code)
 			failed_members.append(email)
 	return failed_members
